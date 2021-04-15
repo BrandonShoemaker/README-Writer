@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
-const { verify } = require('crypto');
-const  fs = require('fs');
+const  writeToFile = require('./utils/generateDocument.js');
 const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 
 
 function validateNotEmpty(confirmNotBlank){
@@ -94,8 +94,6 @@ const questions = [
 }
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
 function init() {
@@ -107,11 +105,9 @@ function init() {
         return getStepsForInstall(steps, answersPart1)
     })
     .then(answers => {
-        console.log(answers);
+        // writes the readme file
+        writeToFile("README.md", generateMarkdown(answers));
     })
-
-    // writes the readme file
-    writeToFile("README.md", );
 }
 
 // gets all steps on how to 
