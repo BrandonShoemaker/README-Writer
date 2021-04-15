@@ -46,7 +46,7 @@ const questions = [
     type: 'list',
     name: 'license',
     message: 'Which license is your README using?',
-    choices: ['BSD', 'MIT', 'GPL'],
+    choices: ['BSD 3-Clause', 'MIT', 'GPL v3', 'None'],
 },
 {
     type: "input",
@@ -65,6 +65,14 @@ const questions = [
     type: "input",
     name: "howToReach",
     message: "Enter any additional information on how to reach you: (ENTER for none)"
+},
+{
+    type: "input",
+    name: "contributors",
+    message: "Who contributed to this project? ",
+    validate: confirmNotBlank => {
+        validateNotEmpty(confirmNotBlank);
+    }
 },
 {
     type: "number",
@@ -106,7 +114,13 @@ function init() {
     })
     .then(answers => {
         // writes the readme file
-        writeToFile("README.md", generateMarkdown(answers));
+        writeToFile("README.md", generateMarkdown(answers), err => {
+            if(err){
+                console.log(err);
+                return;
+            }
+            console.log("README Constructed!");
+        })
     })
 }
 
