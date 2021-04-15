@@ -1,85 +1,64 @@
 
-# l
-
-  [![License: BSD 3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-  
+# README Generator
+No Badges
 
 ##### Table of Contents:
-[Description](#description)
-[Installation](#install)
-[Usage](#usage)
-[Contact](#contact)
-[Email](#email)
-[Additional Info](#addContact)
-[Tests](#tests)
-[Github](#github)
-[License Notice](#license)
-[Contributors](#contributors)
+  [Description](#description)
+  [Installation](#install)
+  [Usage](#usage)
+  [Contact](#contact)
+  [Email](#email)
+  [Additional Info](#addContact)
+  [Tests](#tests)
+  [Github](#github)
+  [License Notice](#license)
+  [Contributors](#contributors)
 
-<a name="description"/>
 ## Description
 
-l
+The goal of this project is to provide anyone who needs a quality README. The program prompts you with a series of questions regarding your project and generates a README.MD file containing all its information in an organized layout, dynamically removing or including certian sections.
 
-<a name="install"/>
 ## Installation
 
 
-  Step 1: a
+Step 1: Clone the repository. Click above for the link to my Github profile if necessary.
 
-Step 2: b
+Step 2: Go to https://nodejs.org/en/download/ to download node.js for your machine and follow their instructions.
 
-Step 3: c
+Step 3: in your terminal in the cloned repository, perform a 'npm install inquirer'.
+
+Step 4: Directly after that, perform a 'npm install', afterwards, follow the Usage section for any more instructions on how to use the program.
 
 
 
-<a name="usage"/>
 ## Usage 
 
-l
+To begin, load up a terminal, navigate to the file the index.js file is located in, and type 'node index.js' from within the terminal. **Note** You must have navigated to the folder using the cd command unless it automatically places you when you load it. Afterwards, simply answer all questions it prompts you for until the end.
 
-<a name="contact"/>
 ## Contact
 
-<a name="email"/>
 ### Email
-l
+brandon.shoemaker2080@gmail.com
 
-<a name="addContact"/>
 ### Additional instructions on contacting me
-l
+If you have any quesitons, simply plug that email into your email service and send an email over and I will resond to it as soon as possible.
 
-<a name="tests"/>
 
-  ## Tests
+## Tests
 
-  l
-  
+There are no included tests in this repo, if you would like to, you may test this programs capabilities yourself with multiple use case scenarios.
 
-<a name="github"/>
+
 ## Github Profile
 
-https://github.com/l
+https://github.com/BrandonShoemaker
 
-<a name="license"/>
+## License Notice
 
-    ## License Notice
-    
-    Copyright 2021 BSD 3-Clause
+There are no licenses on this program
 
-    Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-    
-    1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-    
-    2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-    
-    3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-    
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-<a name="contributors"/>
 ## Contributors
 
-l
+Brandon Shoemaker: Functionalities, Xandromus & gchoi2u: function names/instructions
 
 
