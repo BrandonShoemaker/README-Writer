@@ -71,13 +71,13 @@ const questions = [
     name: "contributors",
     message: "Who contributed to this project? ",
     validate: confirmNotBlank => {
-        validateNotEmpty(confirmNotBlank);
+        return validateNotEmpty(confirmNotBlank);
     }
 },
 {
     type: "number",
     name: "numberOfSteps",
-    message: "How many steps are there?",
+    message: "How many steps are there to install this projects functionalities?",
     validate: confirmNotBlank => {
         if(!confirmNotBlank) return "Please Enter a number, 0-...";
         debugger;

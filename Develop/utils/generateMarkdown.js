@@ -1,8 +1,10 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  if(license === 'None') return;
+  if(license === 'None') return `No Badges`;
   let licensesObj = renderLicenseLink(license);
+  console.log(licensesObj);
+
   return `
   [![License: ${license}](${licensesObj.ioLink})](${licensesObj.endLink})
   `
@@ -11,7 +13,7 @@ function renderLicenseBadge(license) {
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  let licenseLink;
+  let licenseLink = {};
   switch(license){
     case 'MIT':           licenseLink.ioLink = 'https://img.shields.io/badge/License-MIT-yellow.svg';
                           licenseLink.endLink = 'MIT';
@@ -31,9 +33,11 @@ function renderLicenseLink(license) {
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
+  const today = new Date;
+  const year = today.getFullYear();
   switch(license){
-    case 'MIT':           `
-    ## License
+    case 'MIT':           return `
+    ## License Notice
 
     Project Athena, Athena Dashboard, Athena MUSE, Kerberos, X Window System, TechInfo, and Zephyr are trademarks of the Massachusetts Institute of Technology (MIT). Athena, Discuss, Hesiod, Moria, OLC, and TechMail are registered trademarks of MIT. No commercial use of these trademarks may be made without prior written permission of MIT.
     This software is being provided to you, the LICENSEE, by the Massachusetts Institute of Technology (M.I.T.) under the following license. By obtaining, using and/or copying this software, you agree that you have read, understood, and will comply with these terms and conditions:    
@@ -43,12 +47,12 @@ function renderLicenseSection(license) {
     THIS SOFTWARE IS PROVIDED "AS IS", AND M.I.T. MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED. By way of example, but not limitation, M.I.T. MAKES NO REPRESENTATIONS OR WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
     
     The name of the Massachusetts Institute of Technology or M.I.T. may NOT be used in advertising or publicity pertaining to distribution of the software. Title to copyright in this software and any associated documentation shall at all times remain with M.I.T., and LICENSEE agrees to preserve same.`
-                          break;
-
-    case 'BSD 3-Clause':        `
-    ## License
     
-    Copyright ${new Date.getFullYear()} BSD 3-Clause
+
+    case 'BSD 3-Clause':       return `
+    ## License Notice
+    
+    Copyright ${year} BSD 3-Clause
 
     Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
     
@@ -59,12 +63,12 @@ function renderLicenseSection(license) {
     3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
     
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.`
-                          break;
-
-    case 'GPL v3':    `
-    ## License
     
-    Copyright ${new Date.getFullYear()} GPL v3
+
+    case 'GPL v3':    return `
+    ## License Notice
+    
+    Copyright ${year} GPL v3
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -78,26 +82,35 @@ function renderLicenseSection(license) {
     
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.`
-                          break;
-    default: break;
+    
+    default: return `
+    ## License Notice
+
+    There is no license on this program.
+    `;
   }
 }
 
 function generateStepContent(steps){
-  let compiledSteps = ``;
+  if(steps.numberOfSteps === 0) return `
+  There are no installation steps for this program.
+  `;
+  let compiledSteps = '';
   let stepAttrReferencer;
   for (let i = 1; i <= steps.numberOfSteps; i++) {
      stepAttrReferencer = 'step' + i;
-     compiledSteps + `
-     Step ${i}: ${steps.steps[stepAttrReferencer]}
-
-     `
+     compiledSteps += 'Step '+ i +': '+ steps.steps[stepAttrReferencer] +'\n\n';
   }
-  return compiledSteps;
+  return `
+  ${compiledSteps}`;
 }
 
 function validateTestsAttr(tests){
-  if(!tests) return ``;
+  if(!tests) return `
+  ## Tests
+
+  There are no tests available for this program.
+  `;
   return `
   ## Tests
 
@@ -105,45 +118,74 @@ function validateTestsAttr(tests){
   `
 }
 
+function validateHowToReach(howToReach) {
+  if(!howToReach) return `
+  
+  There are no additional instructions provided on how to obtain contact with the creator of this program.
+  `;
+  return `${howToReach}`
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   const {title, description, usage, tests, license, githubUsername, email, howToReach, contributors, ...steps} = data;
   return `
-  # ${title}
-  ${renderLicenseBadge}
-  ## Description
+# ${title}
+${renderLicenseBadge(license)}
 
-  ${description}
+##### Table of Contents:
+[Description](#description)
+[Installation](#install)
+[Usage](#usage)
+[Contact](#contact)
+[Email](#email)
+[Additional Info](#addContact)
+[Tests](#tests)
+[Github](#github)
+[License Notice](#license)
+[Contributors](#contributors)
 
-  ## Installation
+<a name="description"/>
+## Description
 
-  ${generateStepContent(steps)}
+${description}
 
-  ## Usage 
+<a name="install"/>
+## Installation
 
-  ${usage}
+${generateStepContent(steps)}
 
-  ## Contact
+<a name="usage"/>
+## Usage 
 
-  ### Email
-  ${email}
+${usage}
 
-  ### Additional instructions on contacting me
-  ${howToReach}
+<a name="contact"/>
+## Contact
 
-  ${validateTestsAttr(tests)}
+<a name="email"/>
+### Email
+${email}
 
-  ## Github Profile
+<a name="addContact"/>
+### Additional instructions on contacting me
+${validateHowToReach(howToReach)}
 
-  ${'https://github.com/' + githubUsername}
+<a name="tests"/>
+${validateTestsAttr(tests)}
 
-  ## License Notice
+<a name="github"/>
+## Github Profile
 
-  ${renderLicenseSection(license)}
+${'https://github.com/' + githubUsername}
 
-  ## Contributors
+<a name="license"/>
+${renderLicenseSection(license)}
 
-  ${contributors}
+<a name="contributors"/>
+## Contributors
+
+${contributors}
 
 
 `;
